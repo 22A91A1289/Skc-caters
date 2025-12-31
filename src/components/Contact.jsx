@@ -432,7 +432,7 @@ import FacebookIcon from "../assets/facebook.svg";
 import InstagramIcon from "../assets/instagram.svg";
 import YoutubeIcon from "../assets/youtube.svg";
 import WhatsappIcon from "../assets/whatsapp.svg";
-import message from "../assets/message.svg";
+import message from "../assets/Message.svg";
 
 export default function Contact() {
 
@@ -458,7 +458,7 @@ export default function Contact() {
     setLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
+      const res = await fetch("https://skc-backend-1ax0.onrender.com/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)
