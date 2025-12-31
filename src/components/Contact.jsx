@@ -432,7 +432,7 @@ import FacebookIcon from "../assets/facebook.svg";
 import InstagramIcon from "../assets/instagram.svg";
 import YoutubeIcon from "../assets/youtube.svg";
 import WhatsappIcon from "../assets/whatsapp.svg";
-import message from "../assets/message.svg";
+import message from "../assets/Message.svg";
 
 export default function Contact() {
 
