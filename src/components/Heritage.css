@@ -1,0 +1,284 @@
+:root {
+  --brown: #5c3d2e;
+  --bg: #fdf7ec;
+  --red: #7a1d1d;
+  --gold: #c8a24a;
+}
+
+/* Section */
+.heritage-section {
+  background: linear-gradient(180deg, #fdfbf6, #f6f0e6);
+  padding: 80px 0;
+}
+
+.container-max {
+  max-width: 1200px;
+  margin: auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.heritage-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.heritage-subtitle {
+  font-size: 14px;
+  color: #9a8466;
+  letter-spacing: 1px;
+}
+
+.heritage-title {
+  font-family: "Playfair Display", serif;
+  font-size: 46px;
+  color: var(--brown);
+}
+
+/* VALUES GRID */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 80px;
+}
+
+.value-card {
+  border-radius: 16px;
+  padding: 32px 28px;
+  text-align: center;
+  box-shadow:
+    0 10px 15px -3px rgba(0,0,0,0.10),
+    0 4px 6px -4px rgba(0,0,0,0.10);
+}
+
+.value-card h3 {
+  font-family: "Playfair Display", serif;
+  color: var(--brown);
+  margin-bottom: 12px;
+}
+
+.value-card p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #6b5d4f;
+}
+
+.value-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.value-icon img {
+  width: 36px;
+  height: 36px;
+}
+
+/* 🎯 FIGMA MATCH GRADIENTS */
+.devotion-card {
+  background: linear-gradient(
+    135deg,
+    #FAF6F0 0%,
+    #D4A57433 100%
+  );
+}
+
+
+.authenticity-card {
+  background: linear-gradient(
+    135deg,
+    #FAF6F0 0%,
+    #FDB81366 100%   /* 🔥 richer gold */
+  );
+}
+
+
+.love-card {
+  background: linear-gradient(
+    135deg,
+    #FAF6F0 0%,
+    #F4C43066 100%
+  );
+}
+
+
+/* Founder Section */
+.founder-section {
+  background: linear-gradient(
+    90deg,
+    rgba(184, 134, 11, 0.1) 0%,
+    rgba(212, 165, 116, 0.1) 50%,
+    rgba(253, 184, 19, 0.1) 100%
+  );
+  border-radius: 28px;
+  padding: 56px;
+  position: relative;
+}
+
+.founder-top {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 60px;
+  align-items: center;
+}
+
+/* Image stack */
+.founder-image-area {
+  position: relative;
+  width: 360px;
+  height: 440px;
+}
+
+.photo-back-card {
+  position: absolute;
+  inset: 0;
+  border: 2px solid var(--red);
+  border-radius: 20px;
+  transform: translate(14px, 14px);
+}
+
+.photo-front-card {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  transform: translate(-14px, 0);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+}
+
+.founder-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+/* Founder text */
+.founder-name {
+  font-family: "Playfair Display", serif;
+  font-size: 38px;
+  color: var(--brown);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.founder-degree {
+  font-family: "Inter", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--gold);
+}
+
+/* Features */
+.features-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 36px;
+  list-style: none;
+  padding: 40px;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 15px;
+}
+
+.features-list li::before {
+  content: "✓";
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Stats */
+.stats-section {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 70px;
+  text-align: center;
+}
+
+.stat h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  color: var(--brown);
+}
+
+.stat span {
+  font-size: 14px;
+  color: #8b7355;
+}
+
+/* Branding */
+.branding-box {
+  position: absolute;
+  right: 32px;
+  bottom: -28px;
+  background: #8b2d2d;
+  color: #fff;
+  padding: 14px 22px;
+  border-radius: 12px;
+  font-family: "Playfair Display", serif;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+}
+/* ================= RESPONSIVE — HERITAGE ================= */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .founder-top {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    text-align: center;
+  }
+
+  .founder-image-area {
+    margin: 0 auto;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .features-list {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .stats-section {
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .heritage-title {
+    font-size: 32px;
+  }
+
+  .founder-name {
+    font-size: 28px;
+  }
+}

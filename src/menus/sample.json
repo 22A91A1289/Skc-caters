@@ -1,0 +1,19 @@
+{
+  "Starter": [
+    { "name": "Veg Manchurian", "price": 120 },
+    { "name": "Spring Roll", "price": 80 },
+    { "name": "Paneer 65", "price": 150 }
+  ],
+  "Welcome Drink": [
+    { "name": "Grape Juice", "price": 30 },
+    { "name": "Pineapple Juice", "price": 35 }
+  ],
+  "Rice": [
+    { "name": "Veg Biryani", "price": 150 },
+    { "name": "Lemon Rice", "price": 80 }
+  ],
+  "Sweets": [
+    { "name": "Gulab Jamun", "price": 40 },
+    { "name": "Rasmalai", "price": 50 }
+  ]
+}
