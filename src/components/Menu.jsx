@@ -520,7 +520,7 @@ export default function Menu() {
                     <li key={item._id} className="category-item">
                       <img src={CheckIcon} alt="" className="check-icon" />
                       {item.name}
-                      {index === limit - 1 && (
+                      {index === limit - 1 && category.name !== "South Indian Curry" && (
                         <span className="more-text"> and more...</span>
                       )}
                     </li>

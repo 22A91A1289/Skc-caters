@@ -19,13 +19,19 @@ export default function Footer() {
               <span className="om-symbol">ॐ</span>
             </div>
             <div>
-              <h3 className="footer-company-name">Srivatsasa & Kowndinya Caterers</h3>
-              <p className="footer-tagline">100% Pure Vegetarian</p>
+              <h3 className="footer-company-name">Srivatsasa & Kowndinya</h3>
+              <p className="footer-tagline">Pure Satvik Cuisine</p>
             </div>
           </div>
-          <p className="footer-description">
-            Preserving tradition, serving excellence. Your trusted partner for authentic South & North-Indian vegetarian Catering.
-          </p>
+          
+          {/* Follow Us Section - Mobile */}
+          <div className="footer-follow-section">
+            <h4 className="footer-follow-title">Follow Us</h4>
+            <p className="footer-follow-description">
+              Stay connected for updates, recipes, and special offers
+            </p>
+          </div>
+          
           <div className="footer-social-icons">
             <a 
               href="https://www.facebook.com/share/17aTz1EQY4/" 

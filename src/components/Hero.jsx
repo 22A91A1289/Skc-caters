@@ -133,7 +133,7 @@ export default function Hero() {
           className="hero-background"
           style={{
             transform: isHovered ? "scale(1.03)" : "scale(1)",
-            transition: "transform 6s ease"
+            transition: "transform 1.5s ease"
           }}
         >
           {/* Image */}
@@ -184,7 +184,12 @@ export default function Hero() {
               <button
                 className="hero-cta-primary"
                 onClick={() => {
-                  navigate("/contact");
+                  const element = document.getElementById("contact");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                  } else {
+                    navigate("/contact");
+                  }
                 }}
               >
                 <span>Enquire Now</span>
@@ -194,7 +199,12 @@ export default function Hero() {
               <button
                 className="hero-cta-secondary"
                 onClick={() => {
-                  navigate("/menu");
+                  const element = document.getElementById("menu");
+                  if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                  } else {
+                    navigate("/menu");
+                  }
                 }}
               >
                 View Menu

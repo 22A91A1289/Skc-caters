@@ -232,7 +232,7 @@ import CheckIcon from "../assets/check.png";
 
 export default function Heritage() {
   return (
-    <section className="heritage-section">
+    <section id="about" className="heritage-section">
       <div className="container-max">
 
         {/* ===== Header ===== */}
@@ -298,7 +298,6 @@ export default function Heritage() {
             <div className="founder-content">
               <div className="founder-name">
                 Telidevara Rajendra Prasad
-                <span className="founder-degree">M.A</span>
               </div>
 
               <p>
@@ -333,11 +332,11 @@ export default function Heritage() {
           {/* Stats */}
           <div className="stats-section">
             <div className="stat">
-              <h3>10+</h3>
+              <h3>38+</h3>
               <span>Years Experience</span>
             </div>
             <div className="stat">
-              <h3>50+</h3>
+              <h3>10k+</h3>
               <span>Events Catered</span>
             </div>
             <div className="stat">

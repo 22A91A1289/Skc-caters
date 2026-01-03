@@ -490,7 +490,7 @@ export default function Contact() {
   };
 
   return (
-    <section className="contact-section">
+    <section id="contact" className="contact-section">
       <div className="container-max">
 
         {/* Header Section */}

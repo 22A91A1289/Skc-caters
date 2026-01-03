@@ -255,11 +255,12 @@ export default function Reviews() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobileRange, setIsMobileRange] = useState(false);
 
-  /* 📱 MOBILE CHECK — UNCHANGED */
+  /* 📱 MOBILE CHECK — Updated for better mobile support */
   useEffect(() => {
     const checkMobile = () => {
       const width = window.innerWidth;
-      setIsMobileRange(width >= 320 && width <= 425);
+      // Mobile slider for small screens (320-480px) - extended range
+      setIsMobileRange(width >= 320 && width <= 480);
     };
     checkMobile();
     window.addEventListener("resize", checkMobile);
@@ -329,57 +330,63 @@ export default function Reviews() {
         </div>
 
         {/* REVIEWS */}
-        <div className="reviews-wrapper">
-          <div
-            className="reviews-slider-container"
-            style={
-              isMobileRange
-                ? {
-                    transform: `translateX(calc(-${currentIndex} * 100% / ${testimonials.length}))`,
-                    width: `${testimonials.length * 100}%`
-                  }
-                : { width: "100%" }
-            }
-          >
-            {testimonials.map((item, idx) => (
-              <article
-                key={item.name + idx}
-                style={{ "--accent": item.accent }}
-                className="review-card"
-                data-tilt={item.tilt}
-              >
-                <div className="review-content-wrapper">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="avatar-ring">
-                      <img
-                        src={item.avatar}
-                        alt={item.name}
-                        className="w-12 h-12 rounded-full object-cover"
-                        loading="lazy"
-                      />
+        {testimonials.length > 0 ? (
+          <div className="reviews-wrapper">
+            <div
+              className="reviews-slider-container"
+              style={
+                isMobileRange && testimonials.length > 0
+                  ? {
+                      transform: `translateX(-${currentIndex * 100}%)`,
+                      width: `${testimonials.length * 100}%`
+                    }
+                  : { width: "100%" }
+              }
+            >
+              {testimonials.map((item, idx) => (
+                <article
+                  key={item.name + idx}
+                  style={{ "--accent": item.accent }}
+                  className="review-card"
+                  data-tilt={item.tilt}
+                >
+                  <div className="review-content-wrapper">
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="avatar-ring">
+                        <img
+                          src={item.avatar}
+                          alt={item.name}
+                          className="w-12 h-12 rounded-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                      <div>
+                        <h3 className="text-base font-semibold text-[#603215] leading-tight">
+                          {item.name}
+                        </h3>
+                        <p className="text-xs text-gray-500">{item.role}</p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-base font-semibold text-[#603215] leading-tight">
-                        {item.name}
-                      </h3>
-                      <p className="text-xs text-gray-500">{item.role}</p>
-                    </div>
+
+                    <StarRow />
+
+                    <p className="mt-4 text-gray-600 quote-text">
+                      "{item.quote}"
+                    </p>
+
+                    <p className="mt-4 text-xs review-date">
+                      — {item.date}
+                    </p>
                   </div>
-
-                  <StarRow />
-
-                  <p className="mt-4 text-gray-600 quote-text">
-                    "{item.quote}"
-                  </p>
-
-                  <p className="mt-4 text-xs review-date">
-                    — {item.date}
-                  </p>
-                </div>
-              </article>
-            ))}
+                </article>
+              ))}
+            </div>
           </div>
-        </div>
+        ) : (
+          <div className="text-center py-8">
+            <p className="text-gray-500">Loading reviews...</p>
+          </div>
+        )}
 
         {/* DOTS — UNCHANGED */}
         {isMobileRange && (
@@ -395,6 +402,28 @@ export default function Reviews() {
             ))}
           </div>
         )}
+
+        {/* Average Rating Pill */}
+        <div className="flex justify-center mt-20">
+          <div className="rating-pill p-4 flex items-center gap-3 rounded-full" style={{ backgroundColor: '#9b6d41', boxShadow: '0 8px 16px rgba(155, 109, 65, 0.4)' }}>
+            <div className="rating-pill__icon text-yellow-400">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" className="w-6 h-6 fill-current">
+                <path
+                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                />
+              </svg>
+            </div>
+            <div className="rating-pill__text">
+              <div className="rating-title">
+                4.9 / 5.0 Average Rating
+              </div>
+              <div className="rating-subtitle">
+                Based on 500+ reviews
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </main>
   );

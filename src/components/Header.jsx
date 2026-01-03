@@ -221,13 +221,39 @@ export default function Header() {
   const location = useLocation();
   const [menuOpen, setMenuOpen] = useState(false);
 
-  // Page marinappudu menu close avvali and top ki vellali
+  // Page marinappudu menu close avvali
+  // Only scroll to top if navigating to a different route (not home page sections)
   useEffect(() => {
     setMenuOpen(false);
-    window.scrollTo(0, 0);
+    // Only scroll to top if navigating between different routes (not home page)
+    if (location.pathname !== "/") {
+      window.scrollTo(0, 0);
+    }
   }, [location]);
 
   const handleNavClick = () => {
+    setMenuOpen(false);
+  };
+
+  // Scroll to section on home page, or navigate to home then scroll
+  const handleSectionClick = (sectionId) => {
+    if (location.pathname === "/") {
+      // On home page, just scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    } else {
+      // On other pages, navigate to home first
+      navigate("/");
+      // Wait for navigation, then scroll
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      }, 100);
+    }
     setMenuOpen(false);
   };
 
@@ -254,32 +280,50 @@ export default function Header() {
 
           {/* ================= DESKTOP NAV ================= */}
           <nav className="hidden md:flex items-center space-x-6">
-            {["/", "/menu", "/about", "/reviews", "/contact"].map((path, i) => {
-              const labels = ["Home", "Menu", "About Us", "Reviews", "Contact"];
-              return (
-                <NavLink
-                  key={path}
-                  to={path}
-                  end={path === "/"}
-                  className={({ isActive }) =>
-                    `text-sm font-medium pb-1 transition ${
-                      isActive
-                        ? "text-[#7a0d14] border-b-2 border-[#b97a20]"
-                        : "text-gray-700 hover:text-[#7a0d14]"
-                    }`
-                  }
-                >
-                  {labels[i]}
-                </NavLink>
-              );
-            })}
+            <NavLink
+              to="/"
+              end
+              className={({ isActive }) =>
+                `text-sm font-medium pb-1 transition ${
+                  isActive
+                    ? "text-[#7a0d14] border-b-2 border-[#b97a20]"
+                    : "text-gray-700 hover:text-[#7a0d14]"
+                }`
+              }
+            >
+              Home
+            </NavLink>
+            <button
+              onClick={() => handleSectionClick("menu")}
+              className="text-sm font-medium pb-1 transition text-gray-700 hover:text-[#7a0d14]"
+            >
+              Menu
+            </button>
+            <button
+              onClick={() => handleSectionClick("about")}
+              className="text-sm font-medium pb-1 transition text-gray-700 hover:text-[#7a0d14]"
+            >
+              About Us
+            </button>
+            <button
+              onClick={() => handleSectionClick("reviews")}
+              className="text-sm font-medium pb-1 transition text-gray-700 hover:text-[#7a0d14]"
+            >
+              Reviews
+            </button>
+            <button
+              onClick={() => handleSectionClick("contact")}
+              className="text-sm font-medium pb-1 transition text-gray-700 hover:text-[#7a0d14]"
+            >
+              Contact
+            </button>
           </nav>
 
           {/* ================= DESKTOP CTA ================= */}
           <div className="hidden md:block">
             <button
               className="header-book-btn"
-              onClick={() => navigate("/contact")}
+              onClick={() => handleSectionClick("contact")}
             >
               <span>Enquire Now</span>
               <img
@@ -311,10 +355,10 @@ export default function Header() {
         {menuOpen && (
           <div className="mobile-menu md:hidden">
             <NavLink to="/" onClick={handleNavClick}>Home</NavLink>
-            <NavLink to="/menu" onClick={handleNavClick}>Menu</NavLink>
-            <NavLink to="/about" onClick={handleNavClick}>About Us</NavLink>
-            <NavLink to="/reviews" onClick={handleNavClick}>Reviews</NavLink>
-            <NavLink to="/contact" onClick={handleNavClick}>Contact</NavLink>
+            <button onClick={() => handleSectionClick("menu")}>Menu</button>
+            <button onClick={() => handleSectionClick("about")}>About Us</button>
+            <button onClick={() => handleSectionClick("reviews")}>Reviews</button>
+            <button onClick={() => handleSectionClick("contact")}>Contact</button>
           </div>
         )}
       </div>
