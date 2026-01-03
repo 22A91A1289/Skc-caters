@@ -16,7 +16,45 @@ export default function App() {
       {/* Header - Shows on all pages */}
       <Header />
 
-      <Toaster position="top-right" reverseOrder={false} />
+      <Toaster 
+        position="top-right" 
+        reverseOrder={false}
+        toastOptions={{
+          duration: 4000,
+          style: {
+            background: '#fff',
+            color: '#333',
+            borderRadius: '12px',
+            boxShadow: '0 8px 24px rgba(0, 0, 0, 0.15)',
+            padding: '16px 20px',
+            fontSize: '15px',
+            fontFamily: "'Inter', sans-serif",
+            border: '1px solid rgba(0, 0, 0, 0.08)',
+          },
+          success: {
+            iconTheme: {
+              primary: '#10b981',
+              secondary: '#fff',
+            },
+            style: {
+              background: '#f0fdf4',
+              color: '#166534',
+              border: '1px solid #86efac',
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: '#ef4444',
+              secondary: '#fff',
+            },
+            style: {
+              background: '#fef2f2',
+              color: '#991b1b',
+              border: '1px solid #fca5a5',
+            },
+          },
+        }}
+      />
 
       {/* Routes */}
       <Routes>

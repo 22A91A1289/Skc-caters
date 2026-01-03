@@ -6938,3 +6938,63 @@ line-height: 20px; /* 142.857% */
     font-size: 14px;
   }
 }
+
+/* ====================================================== */
+/* TOASTER MESSAGE STYLING - BEAUTIFUL & MODERN            */
+/* ====================================================== */
+
+/* Custom toast container */
+div[data-sonner-toaster] {
+  z-index: 9999 !important;
+}
+
+/* React Hot Toast custom styling */
+div[class*="react-hot-toast"] {
+  font-family: 'Inter', sans-serif !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+}
+
+/* Success toast */
+div[class*="react-hot-toast"][class*="success"] {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%) !important;
+  color: #166534 !important;
+  border: 1.5px solid #86efac !important;
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2) !important;
+}
+
+/* Error toast */
+div[class*="react-hot-toast"][class*="error"] {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%) !important;
+  color: #991b1b !important;
+  border: 1.5px solid #fca5a5 !important;
+  box-shadow: 0 10px 30px rgba(239, 68, 68, 0.2) !important;
+}
+
+/* Toast icon styling */
+div[class*="react-hot-toast"] svg {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1)) !important;
+}
+
+/* Toast animation improvements */
+@keyframes toast-enter {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes toast-exit {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
