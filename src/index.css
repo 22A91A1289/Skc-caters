@@ -448,6 +448,58 @@ section {
 }
 
 /* ====================================================== */
+/* 900px to 1023px - Same as 1024px header styling */
+/* ====================================================== */
+@media (min-width: 900px) and (max-width: 1023px) {
+  /* Header container - ensure proper spacing */
+  /* Header wrapper */
+  .site-header .flex.items-center.justify-between {
+    gap: 12px !important;
+    padding-top: 8px !important;   /* 🔥 Add top spacing */
+  }
+
+  /* LOGO BLOCK – give more space with gap to nav */
+  .site-header .flex.items-center.space-x-3 {
+    max-width: 32% !important;   /* 🔥 was 26% */
+    flex: 0 0 auto !important;
+    margin-right: 40px !important;   /* 🔥 Gap between logo and nav - increased for visibility */
+    padding-top: 4px !important;   /* 🔥 Add top spacing to logo section */
+  }
+
+  /* Title – allow slight shrink */
+  .site-header .flex.items-center.space-x-3 h1 {
+    font-size: 15px !important;
+    white-space: nowrap !important;
+    margin-top: 2px !important;   /* 🔥 Add top spacing to title */
+  }
+
+  /* NAV – push away from logo with gap */
+  .site-header nav {
+    margin-left: 0 !important;   /* Remove auto margin, use gap instead */
+    padding-left: 16px !important;   /* Additional gap from logo */
+    padding-top: 4px !important;   /* 🔥 Add top spacing to nav */
+    gap: 8px !important;   /* 🔥 Reduced gap between nav links */
+  }
+
+  /* Nav links */
+  .site-header nav a {
+    font-size: 14px !important;
+    padding: 0 6px !important;
+  }
+
+  /* Enquire button */
+  .site-header .hidden.md\:block {
+    margin-left: 12px !important;
+    padding-top: 4px !important;   /* 🔥 Add top spacing to button container */
+  }
+
+  /* Button - ensure it fits */
+  .header-book-btn {
+    padding: 0 20px !important;
+    font-size: 14px !important;
+  }
+}
+
 /* 1024px SPECIFIC HEADER FIX                              */
 /* ====================================================== */
 
