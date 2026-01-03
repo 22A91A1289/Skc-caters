@@ -425,7 +425,7 @@ export default function Menu() {
   useEffect(() => {
     const fetchMenu = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/menu");
+        const res = await fetch("https://skc-backend-1ax0.onrender.com/api/menu");
         const data = await res.json();
         setMenu(data);
       } catch (err) {
@@ -441,7 +441,7 @@ export default function Menu() {
   const downloadMenuPdf = async () => {
     try {
       const res = await fetch(
-        `http://localhost:5000/api/menu/pdf/${activeMenu}`
+        `https://skc-backend-1ax0.onrender.com/api/menu/pdf/${activeMenu}`
       );
       const data = await res.json();
       if (data?.pdfUrl) {

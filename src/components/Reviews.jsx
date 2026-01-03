@@ -268,7 +268,7 @@ export default function Reviews() {
 
   /* 🔥 FETCH FROM BACKEND + ORDER FIX */
   useEffect(() => {
-    fetch("http://localhost:5000/api/reviews")
+    fetch("https://skc-backend-1ax0.onrender.com/api/reviews")
       .then(res => res.json())
       .then(data => {
         const formatted = data
