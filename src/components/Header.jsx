@@ -354,11 +354,65 @@ export default function Header() {
         {/* ================= MOBILE MENU (Floating Box) ================= */}
         {menuOpen && (
           <div className="mobile-menu md:hidden">
-            <NavLink to="/" onClick={handleNavClick}>Home</NavLink>
-            <button onClick={() => handleSectionClick("menu")}>Menu</button>
-            <button onClick={() => handleSectionClick("about")}>About Us</button>
-            <button onClick={() => handleSectionClick("reviews")}>Reviews</button>
-            <button onClick={() => handleSectionClick("contact")}>Contact</button>
+            <NavLink 
+              to="/" 
+              onClick={() => {
+                setMenuOpen(false);
+                if (location.pathname !== "/") {
+                  navigate("/");
+                }
+              }}
+            >
+              Home
+            </NavLink>
+            <button 
+              onClick={() => {
+                setMenuOpen(false);
+                if (location.pathname === "/") {
+                  handleSectionClick("menu");
+                } else {
+                  navigate("/menu");
+                }
+              }}
+            >
+              Menu
+            </button>
+            <button 
+              onClick={() => {
+                setMenuOpen(false);
+                if (location.pathname === "/") {
+                  handleSectionClick("about");
+                } else {
+                  navigate("/about");
+                }
+              }}
+            >
+              About Us
+            </button>
+            <button 
+              onClick={() => {
+                setMenuOpen(false);
+                if (location.pathname === "/") {
+                  handleSectionClick("reviews");
+                } else {
+                  navigate("/reviews");
+                }
+              }}
+            >
+              Reviews
+            </button>
+            <button 
+              onClick={() => {
+                setMenuOpen(false);
+                if (location.pathname === "/") {
+                  handleSectionClick("contact");
+                } else {
+                  navigate("/contact");
+                }
+              }}
+            >
+              Contact
+            </button>
           </div>
         )}
       </div>
