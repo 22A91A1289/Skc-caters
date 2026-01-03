@@ -478,13 +478,14 @@ section {
     margin-left: 0 !important;   /* Remove auto margin, use gap instead */
     padding-left: 16px !important;   /* Additional gap from logo */
     padding-top: 4px !important;   /* 🔥 Add top spacing to nav */
-    gap: 8px !important;   /* 🔥 Reduced gap between nav links */
+    gap: 4px !important;   /* 🔥 Reduced gap between nav links */
   }
 
   /* Nav links */
-  .site-header nav a {
+  .site-header nav a,
+  .site-header nav button {
     font-size: 14px !important;
-    padding: 0 6px !important;
+    padding: 0 4px !important;   /* 🔥 Reduced padding for tighter spacing */
   }
 
   /* Enquire button */
