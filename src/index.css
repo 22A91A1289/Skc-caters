@@ -118,6 +118,42 @@ section {
   position: relative; /* Mobile menu positioning kosam */
 }
 
+/* ======================================================= */
+/* MAIN CONTENT WRAPPER - Ensures content starts below header */
+/* ======================================================= */
+.main-content-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+/* Mobile - Add padding to account for sticky header */
+@media (max-width: 767px) {
+  .main-content-wrapper {
+    padding-top: 80px; /* Header height (60px) + top spacing (12px) + margin (8px) */
+  }
+}
+
+/* Small mobile devices */
+@media (max-width: 385px) {
+  .main-content-wrapper {
+    padding-top: 70px; /* Adjusted for smaller header */
+  }
+}
+
+/* Very small mobile */
+@media (max-width: 340px) {
+  .main-content-wrapper {
+    padding-top: 65px; /* Further adjusted for very small screens */
+  }
+}
+
+/* Desktop - No extra padding needed (header spacing is handled by top: 12px) */
+@media (min-width: 768px) {
+  .main-content-wrapper {
+    padding-top: 0; /* No extra padding on desktop */
+  }
+}
+
 /* Header flex container - prevent overflow */
 .site-header .flex.items-center.justify-between {
   min-width: 0;
