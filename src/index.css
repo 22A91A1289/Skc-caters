@@ -125,29 +125,6 @@ section {
   }
 }
 
-/* ======================================================= */
-/* MAIN CONTENT AREA - Starts below header                 */
-/* ======================================================= */
-.main-content-area {
-  width: 100%;
-  position: relative;
-  min-height: calc(100vh - 80px);
-}
-
-/* Mobile - Add padding to account for sticky header */
-@media (max-width: 767px) {
-  .main-content-area {
-    padding-top: 70px; /* Header height + spacing */
-  }
-}
-
-/* Desktop - No extra padding (header has top: 12px spacing) */
-@media (min-width: 768px) {
-  .main-content-area {
-    padding-top: 0;
-  }
-}
-
 .site-header .container-max { 
   padding-left: 6px; 
   padding-right: 6px; 
