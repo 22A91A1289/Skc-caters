@@ -2252,6 +2252,13 @@ img.object-cover { object-fit: cover; }
     padding: 5px 0;
   }
 
+  .category-item .more-text {
+    font-size: 13px;
+    line-height: inherit;
+    margin-left: 4px;
+    display: inline;
+  }
+
   .menu-complementary {
     padding: 20px 16px;
     margin: 25px 16px 0;
