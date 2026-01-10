@@ -5600,9 +5600,11 @@ line-height: 20px; /* 142.857% */
 @media (max-width: 640px) {
 
   .site-header {
-    top: 6px;
-    border-radius: 18px;
+    top: 0 !important;
+    border-radius: 0 !important;
     padding: 4px 0;
+    width: 100% !important;
+    margin: 0 !important;
   }
 
   .site-header .container-max {
@@ -5904,9 +5906,11 @@ line-height: 20px; /* 142.857% */
   /* ================= HEADER ================= */
 
   .site-header {
-    top: 6px !important;
+    top: 0 !important;
     padding: 4px 0 !important;
-    border-radius: 16px !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+    margin: 0 !important;
   }
 
   .site-header .container-max {
