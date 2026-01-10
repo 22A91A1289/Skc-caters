@@ -19,8 +19,8 @@ export default function Footer() {
               <span className="om-symbol">ॐ</span>
             </div>
             <div>
-              <h3 className="footer-company-name">Srivatsasa & Kowndinya</h3>
-              <p className="footer-tagline">Pure Satvik Cuisine</p>
+              <h3 className="footer-company-name">SRIVATSASA & KOUNDINYA CATERERS</h3>
+              <p className="footer-tagline">100% Pure Vegetarian</p>
             </div>
           </div>
           
