@@ -122,7 +122,7 @@ export default function Footer() {
       {/* Bottom Footer */}
       <div className="footer-bottom">
         <div className="footer-bottom-content">
-          <p className="copyright">© 2024 Shubham Brahmin Catering. All rights reserved.</p>
+          <p className="copyright">© 2024 Shubham Catering. All rights reserved.</p>
           <div className="footer-bottom-links">
             <a href="#">Privacy Policy</a>
             <a href="#">Terms of Service</a>

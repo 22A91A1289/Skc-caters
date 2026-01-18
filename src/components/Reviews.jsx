@@ -223,6 +223,7 @@
 import React, { useState, useEffect } from "react";
 import maleAvatar from "../assets/male.jpg";
 import femaleAvatar from "../assets/female.jpg";
+import { getCachedData, setCachedData } from "../utils/cache.js";
 
 /* 🔒 FIXED DISPLAY ORDER — DO NOT CHANGE */
 const REVIEW_ORDER = [
@@ -252,6 +253,7 @@ const StarRow = () => (
 
 export default function Reviews() {
   const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobileRange, setIsMobileRange] = useState(false);
 
@@ -267,8 +269,17 @@ export default function Reviews() {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  /* 🔥 FETCH FROM BACKEND + ORDER FIX */
+  /* 🔥 FETCH FROM BACKEND + ORDER FIX (WITH CACHING) */
   useEffect(() => {
+    // Check cache first
+    const cached = getCachedData("reviews");
+    if (cached) {
+      setTestimonials(cached);
+      setLoading(false);
+      return;
+    }
+
+    setLoading(true);
     fetch("https://skc-backend-1ax0.onrender.com/api/reviews")
       .then(res => res.json())
       .then(data => {
@@ -294,7 +305,10 @@ export default function Reviews() {
           }));
 
         setTestimonials(formatted);
-      });
+        setCachedData("reviews", formatted); // Cache the data
+      })
+      .catch(err => console.error("Reviews fetch failed", err))
+      .finally(() => setLoading(false));
   }, []);
 
   /* 🔁 AUTO SCROLL — UNCHANGED */
@@ -309,6 +323,44 @@ export default function Reviews() {
   }, [isMobileRange, testimonials]);
 
   const goToSlide = index => setCurrentIndex(index);
+
+  // Skeleton Loader Component
+  const ReviewsSkeleton = () => (
+    <div className="reviews-wrapper">
+      <div className="reviews-slider-container" style={{ width: "100%" }}>
+        {[1, 2, 3, 4, 5, 6].map((i) => (
+          <article
+            key={i}
+            className="review-card animate-pulse"
+            style={{ "--accent": "#bd9a52" }}
+          >
+            <div className="review-content-wrapper">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="avatar-ring">
+                  <div className="w-12 h-12 rounded-full bg-gray-200"></div>
+                </div>
+                <div className="space-y-2">
+                  <div className="h-4 bg-gray-200 rounded w-32"></div>
+                  <div className="h-3 bg-gray-200 rounded w-24"></div>
+                </div>
+              </div>
+              <div className="flex gap-1 mb-4">
+                {[1, 2, 3, 4, 5].map((j) => (
+                  <div key={j} className="w-5 h-5 bg-gray-200 rounded"></div>
+                ))}
+              </div>
+              <div className="space-y-2 mt-4">
+                <div className="h-4 bg-gray-200 rounded"></div>
+                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+              </div>
+              <div className="h-3 bg-gray-200 rounded w-20 mt-4"></div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  );
 
   return (
     <main
@@ -330,7 +382,9 @@ export default function Reviews() {
         </div>
 
         {/* REVIEWS */}
-        {testimonials.length > 0 ? (
+        {loading ? (
+          <ReviewsSkeleton />
+        ) : testimonials.length > 0 ? (
           <div className="reviews-wrapper">
             <div
               className="reviews-slider-container"

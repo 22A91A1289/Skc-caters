@@ -330,10 +330,12 @@
 import React, { useEffect, useState } from "react";
 import CheckIcon from "../assets/check.png";
 import StarIcon from "../assets/Star.svg";
+import { getCachedData, setCachedData } from "../utils/cache.js";
 
 export default function Menu() {
   const [activeMenu, setActiveMenu] = useState("standard");
   const [menu, setMenu] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   /* ===============================
      MENU META (PRICE + FOOTER TEXT)
@@ -420,16 +422,28 @@ export default function Menu() {
   };
 
   /* ===============================
-     FETCH MENU FROM BACKEND
+     FETCH MENU FROM BACKEND (WITH CACHING)
      =============================== */
   useEffect(() => {
     const fetchMenu = async () => {
+      // Check cache first
+      const cached = getCachedData("menu");
+      if (cached) {
+        setMenu(cached);
+        setLoading(false);
+        return;
+      }
+
       try {
+        setLoading(true);
         const res = await fetch("https://skc-backend-1ax0.onrender.com/api/menu");
         const data = await res.json();
         setMenu(data);
+        setCachedData("menu", data); // Cache the data
       } catch (err) {
         console.error("Menu fetch failed", err);
+      } finally {
+        setLoading(false);
       }
     };
     fetchMenu();
@@ -455,6 +469,24 @@ export default function Menu() {
   };
 
   const meta = MENU_META[activeMenu];
+
+  // Skeleton Loader Component
+  const MenuSkeleton = () => (
+    <div className="space-y-8">
+      {[1, 2, 3, 4, 5, 6].map((i) => (
+        <div key={i} className="menu-category-card animate-pulse">
+          <div className="category-image bg-gray-200 rounded-lg h-48"></div>
+          <div className="h-6 bg-gray-200 rounded w-3/4 mt-4"></div>
+          <ul className="category-items mt-4 space-y-2">
+            {[1, 2, 3, 4].map((j) => (
+              <li key={j} className="h-5 bg-gray-200 rounded"></li>
+            ))}
+          </ul>
+          <div className="h-10 bg-gray-200 rounded w-32 mt-4"></div>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <section id="menu" className="menu-section">
@@ -495,48 +527,52 @@ export default function Menu() {
         </div>
 
         {/* ================= CATEGORIES GRID ================= */}
-        <div key={activeMenu} className="menu-categories-grid">
-          {CATEGORY_ORDER[activeMenu].map((catName) => {
-            const category = menu.find((c) => c.name === catName);
-            if (!category) return null;
+        {loading ? (
+          <MenuSkeleton />
+        ) : (
+          <div key={activeMenu} className="menu-categories-grid">
+            {CATEGORY_ORDER[activeMenu].map((catName) => {
+              const category = menu.find((c) => c.name === catName);
+              if (!category) return null;
 
-            const limit = DISPLAY_LIMITS[activeMenu]?.[category.name];
-            if (!limit) return null;
+              const limit = DISPLAY_LIMITS[activeMenu]?.[category.name];
+              if (!limit) return null;
 
-            return (
-              <div key={category._id} className="menu-category-card">
-                <div className="category-image">
-                  <img
-                    src={category.image}
-                    alt={category.name}
-                    className="category-image-placeholder"
-                  />
+              return (
+                <div key={category._id} className="menu-category-card">
+                  <div className="category-image">
+                    <img
+                      src={category.image}
+                      alt={category.name}
+                      className="category-image-placeholder"
+                    />
+                  </div>
+
+                  <h3 className="category-title">{category.name}</h3>
+
+                  <ul className="category-items">
+                    {category.items.slice(0, limit).map((item, index) => (
+                      <li key={item._id} className="category-item">
+                        <img src={CheckIcon} alt="" className="check-icon" />
+                        {item.name}
+                        {index === limit - 1 && category.name !== "South Indian Curry" && (
+                          <span className="more-text"> and more...</span>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button
+                    className="view-details-btn"
+                    onClick={downloadMenuPdf}
+                  >
+                    View Details &gt;
+                  </button>
                 </div>
-
-                <h3 className="category-title">{category.name}</h3>
-
-                <ul className="category-items">
-                  {category.items.slice(0, limit).map((item, index) => (
-                    <li key={item._id} className="category-item">
-                      <img src={CheckIcon} alt="" className="check-icon" />
-                      {item.name}
-                      {index === limit - 1 && category.name !== "South Indian Curry" && (
-                        <span className="more-text"> and more...</span>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-
-                <button
-                  className="view-details-btn"
-                  onClick={downloadMenuPdf}
-                >
-                  View Details &gt;
-                </button>
-              </div>
-            );
-          })}
-        </div>
+              );
+            })}
+          </div>
+        )}
 
         {/* ================= FOOTER ================= */}
         <div className="menu-complementary">
