@@ -4975,6 +4975,14 @@ line-height: 20px; /* 142.857% */
 }
 
 @media (max-width: 768px) {
+  .contact-header,
+  .contact-title,
+  .contact-tagline {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+  }
+
   .contact-title {
     font-size: 2rem;
   }
@@ -6896,11 +6904,6 @@ line-height: 20px; /* 142.857% */
   /* Section and Card spacing */
   .contact-section {
     padding: 20px 10px !important;
-  }
-
-  /* Hide contact form on mobile */
-  .contact-form-column {
-    display: none !important;
   }
 
   /* Contact Information Card */
