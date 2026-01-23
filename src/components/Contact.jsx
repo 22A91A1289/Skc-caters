@@ -459,6 +459,7 @@ export default function Contact() {
     e.preventDefault();
     setLoading(true);
     setStatus({ type: "", message: "" });
+    console.log("submit fired", formData);
 
     try {
       await submitEnquiry({ ...formData, source: "skconline.in" });
