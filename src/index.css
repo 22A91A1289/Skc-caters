@@ -5244,20 +5244,6 @@ line-height: 20px; /* 142.857% */
   }
 }
 
-/* Hide form only on small mobile devices (320px - 475px) */
-@media (min-width: 320px) and (max-width: 475px) {
-  .contact-form-column {
-    display: none !important; /* Hide form on small mobile (320-475px) */
-  }
-}
-
-/* Ensure form is visible on desktop and tablets (above 475px) */
-@media (min-width: 476px) {
-  .contact-form-column {
-    display: flex !important; /* Show form on desktop/tablet */
-  }
-}
-
 @media (max-width: 480px) {
   .contact-section {
     padding: 0.5rem 0 0;
