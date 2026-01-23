@@ -423,6 +423,7 @@
 // }
 import React, { useState } from "react";
 import toast from "react-hot-toast";
+import { submitEnquiry } from "../api/enquiry";
 
 import mailImage from "../assets/Mail.svg";
 import clockImage from "../assets/Clock.svg";
@@ -444,6 +445,7 @@ export default function Contact() {
     message: ""
   });
 
+  const [status, setStatus] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
@@ -456,22 +458,11 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+    setStatus({ type: "", message: "" });
 
     try {
-      const res = await fetch("https://skc-backend-1ax0.onrender.com/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        toast.error(data.message || "Something went wrong");
-        setLoading(false);
-        return;
-      }
-
+      await submitEnquiry({ ...formData, source: "skconline.in" });
+      setStatus({ type: "success", message: "Enquiry submitted successfully!" });
       toast.success("Message sent successfully 📩");
 
       setFormData({
@@ -483,7 +474,9 @@ export default function Contact() {
       });
 
     } catch (err) {
-      toast.error("Server error");
+      const errorMessage = err?.message || "Something went wrong.";
+      setStatus({ type: "error", message: errorMessage });
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
@@ -689,6 +682,15 @@ export default function Contact() {
                   {loading ? "Sending..." : "Send Message"}
                 </span>
               </button>
+
+              {status.message && (
+                <p
+                  className="form-status-message"
+                  style={{ color: status.type === "success" ? "green" : "red" }}
+                >
+                  {status.message}
+                </p>
+              )}
 
             </form>
           </div>
